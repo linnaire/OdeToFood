@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using OdeToFood.Core;
@@ -8,22 +9,30 @@ namespace OdeToFood.Pages.Restaurants
 {
     public class IndexModel : PageModel
     {
+        #region privates readonly properties
         private readonly IConfiguration _config;
         private readonly IRestaurantRepository _repository;
+        #endregion
 
-        public string Message { get; set; }
+        #region public properties
         public IEnumerable<Restaurant> Restaurants { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+        #endregion
 
+        #region constructor
         public IndexModel(IConfiguration config, IRestaurantRepository repository)
         {
             this._config = config;
             this._repository = repository;
         }
+        #endregion
 
+        #region actions
         public void OnGet()
         {
-            Message = this._config["Message"];
-            Restaurants = _repository.GetAll();
-        }
+            Restaurants = _repository.GetRestaurantByName(SearchTerm);
+        } 
+        #endregion
     }
 }

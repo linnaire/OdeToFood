@@ -24,5 +24,14 @@ namespace OdeToFood.Data
         {
             return _restaurants.ToList().OrderBy(x => x.Id);
         }
+
+        public IEnumerable<Restaurant> GetRestaurantByName(string name)
+        {
+            return _restaurants.ToList()
+                               .Where(
+                                    x => string.IsNullOrEmpty(name) ||
+                                    x.Name.StartsWith(name)
+                               );
+        }
     }
 }
