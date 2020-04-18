@@ -20,9 +20,28 @@ namespace OdeToFood.Data
             };
         }
 
-        public IEnumerable<Restaurant> GetAll()
+        public Restaurant Create(Restaurant model)
+        {
+            model.Id = _restaurants.Max(x => x.Id) + 1;
+
+            _restaurants.Add(model);
+
+            return model;
+        }
+
+        public bool Exists(int id)
+        {
+            return _restaurants.Any(x => x.Id == id);
+        }
+
+        public IEnumerable<Restaurant> FindAll()
         {
             return _restaurants.ToList().OrderBy(x => x.Id);
+        }
+
+        public Restaurant FindById(int id)
+        {
+            return _restaurants.FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Restaurant> GetRestaurantByName(string name)
@@ -32,6 +51,29 @@ namespace OdeToFood.Data
                                     x => string.IsNullOrEmpty(name) ||
                                     x.Name.StartsWith(name)
                                );
+        }
+
+        public bool Save()
+        {
+            return true;
+        }
+
+        public Restaurant Update(Restaurant model)
+        {
+            if (Exists(model.Id))
+            {
+                var restaurant = FindById(model.Id);
+
+                restaurant.Name = model.Name;
+
+                restaurant.Location = model.Location;
+
+                restaurant.Cuisine = model.Cuisine;
+
+                return restaurant;
+            }
+
+            return null;
         }
     }
 }
