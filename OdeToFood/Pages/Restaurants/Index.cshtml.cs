@@ -17,6 +17,8 @@ namespace OdeToFood.Pages.Restaurants
         public IEnumerable<Restaurant> Restaurants { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
+        [TempData]
+        public string Message { get; set; }
         #endregion
 
         #region constructor

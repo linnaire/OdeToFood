@@ -1,0 +1,30 @@
+﻿@using OdeToFood.Core
+@model Restaurant
+
+<div class="col-sm-6 col-lg-4 mb-3">
+    <div class="card" style="max-width: 18rem;">
+        <div class="card-header">
+            <strong>@Model.Name</strong>
+        </div>
+        <div class="card-body">
+            <p><strong>Location:</strong> @Model.Location</p>
+            <p><strong>Cuisine:</strong> @Model.Cuisine</p>
+            <hr />
+            <a asp-page="Detail" asp-route-id="@Model.Id" class="btn btn-info btn-block mr-1">
+                <i class="fa fa-info-circle fw">
+                    Info
+                </i>
+            </a>
+            <a asp-page="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-block mr-1">
+                <i class="fa fa-edit fw">
+                    Details
+                </i>
+            </a>
+            <a asp-page="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-block">
+                <i class="fa fa-trash" aria-hidden="true">
+                    Remove
+                </i>
+            </a>
+        </div>
+    </div>
+</div>

@@ -11,5 +11,6 @@ namespace OdeToFood.Data
         T Create(T model);
         T Delete(int id);
         bool Save();
+        int GetCount();
     }
 }

@@ -43,6 +43,11 @@ namespace OdeToFood.Data
                                     x.Name.StartsWith(name)
                                );
         }
+
+        public int GetCount()
+        {
+            return _context.Restaurants.Count();
+        }
         #endregion
 
         #region crud
@@ -78,7 +83,7 @@ namespace OdeToFood.Data
         public bool Save()
         {
             return _context.SaveChanges() > 0;
-        } 
+        }
         #endregion
     }
 }
