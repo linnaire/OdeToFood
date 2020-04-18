@@ -9,6 +9,7 @@ namespace OdeToFood.Data
         bool Exists(int id);
         T Update(T model);
         T Create(T model);
+        T Delete(int id);
         bool Save();
     }
 }

@@ -10,7 +10,6 @@ namespace OdeToFood.Pages.Restaurants
     public class IndexModel : PageModel
     {
         #region privates readonly properties
-        private readonly IConfiguration _config;
         private readonly IRestaurantRepository _repository;
         #endregion
 
@@ -21,9 +20,8 @@ namespace OdeToFood.Pages.Restaurants
         #endregion
 
         #region constructor
-        public IndexModel(IConfiguration config, IRestaurantRepository repository)
+        public IndexModel(IRestaurantRepository repository)
         {
-            this._config = config;
             this._repository = repository;
         }
         #endregion
